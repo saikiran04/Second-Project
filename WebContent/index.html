@@ -1,0 +1,96 @@
+<!DOCTYPE>
+<html >
+<head>
+<title></title>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+
+
+<link rel="stylesheet"
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.1/css/font-awesome.min.css">
+
+
+
+</head>
+<body ng-app="myApp">
+<header>
+	<nav class="navbar navbar-default" >
+
+		<div class="container-fluid">
+			
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+				data-target="collapse-example" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span> 
+				<span class="icon-bar"></span>
+			</button>
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">NIIT</a>
+			</div>
+		
+		<div class="collapse navbar-collapse" id="collapse-example">
+			<ul class="nav navbar-nav">
+				<li><a href="#/home" ng-hide="currentUser.firstname">Home</a></li>
+				<li><a href="#/about" ng-hide="currentUser.firstname">About Us</a></li>
+				<li><a href="#/welcome" ng-hide="currentUser.firstname">Welcome</a></li>
+				<li><a href="#" ng-show="currentUser.firstname">Welcome {{currentUser.firstname}}{{currentUser.lastname}}</a></li>
+				<li><a href="#/updateprofile" ng-show="currentUser.firstname">Edit Profile</a></li>
+				<li><a href="#/savejob" ng-show="currentUser.firstname">Job</a></li>
+				<li><a href="#/blog" ng-show="currentUser.firstname">Add Blog Post</a></li>
+				<li><a href="#/register" ng-hide="currentUser.firstname">Sign Up</a></li>
+				<li><a href="#/login" ng-hide="currentUser.firstname">Sign In</a></li>
+				<li><a href="" ng-click="logout()" ng-show="currentUser.firstname">logout</a>
+			</ul>
+
+			
+		</div>
+	</div>
+	</nav>
+	</header>
+
+
+	<div ng-view></div>
+
+
+</body>
+	
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.25/angular.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.25/angular-route.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.25/angular-cookies.js"></script>
+
+
+
+	<script src="app.js"></script>
+	<script src="c_user/UserController.js"></script>
+	<script src="c_user/UserService.js"></script>
+	 <script src="c_user/BlogController.js"></script>
+	<script src="c_user/BlogService.js"></script>
+	<!-- <script src="c_event/EventController.js"></script>
+	<script src="c_event/EventService.js"></script>
+	<script src="c_forum/ForumController.js"></script>
+	<script src="c_forum/ForumService.js"></script>
+	<script src="c_friend/FriendController.js"></script>
+	<script src="c_friend/FriendService.js"></script>
+	<script src="c_job/JobController.js"></script>
+	<script src="c_job/JobService.js"></script>
+	<script src="c_chat/ChatController.js"></script>
+	<script src="c_chat/ChatService.js"></script>
+	<script src="c_friend/RequestController.js"></script>
+	<script src="c_friend/RequestService.js"></script>  -->
+
+	
