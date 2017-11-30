@@ -50,8 +50,8 @@ public class BlogController {
 		Date dt=new java.util.Date();
 		blog.setCreation_date(dt.toString());
 		User user=(User) httpSession.getAttribute("loggedInUser");
-		//blog.setUser_name(user.getUser_name());
-		blog.setUser_name("student1");
+		blog.setUser_name(user.getUser_name());
+		//blog.setUser_name("student1");
 		blog.setStatus("Published");
 		try {
 			blogDao.save(blog);

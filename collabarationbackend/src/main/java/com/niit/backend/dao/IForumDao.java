@@ -7,13 +7,13 @@ import com.niit.backend.model.BlogComment;
 import com.niit.backend.model.Forum;
 
 public interface IForumDao {
-public boolean save(Forum forum);
+public void save(Forum forum);
 	
-	public boolean update(Forum forum);
+	public void update(Forum forum);
 	
-	public boolean delete(Forum forum);
+	public void delete(Forum forum);
 	
-	public Forum get(int forumID);
+	public Forum get(int id);
 	
 	public Forum getName(String name);
 	
