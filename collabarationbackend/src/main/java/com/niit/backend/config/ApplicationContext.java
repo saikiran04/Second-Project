@@ -18,11 +18,14 @@ import com.niit.backend.dao.BlogDaoImpl;
 import com.niit.backend.dao.ForumDaoImpl;
 import com.niit.backend.dao.IBlogDao;
 import com.niit.backend.dao.IForumDao;
+import com.niit.backend.dao.IJobDao;
 import com.niit.backend.dao.IUserDao;
+import com.niit.backend.dao.JobDaoImpl;
 import com.niit.backend.dao.UserDaoImpl;
 import com.niit.backend.model.Blog;
 import com.niit.backend.model.BlogComment;
 import com.niit.backend.model.Forum;
+import com.niit.backend.model.Job;
 import com.niit.backend.model.User;
 
 
@@ -64,6 +67,7 @@ public class ApplicationContext {
 		sessionBuilder.addAnnotatedClasses(Blog.class);
 		sessionBuilder.addAnnotatedClasses(BlogComment.class);
 		sessionBuilder.addAnnotatedClasses(Forum.class);
+		sessionBuilder.addAnnotatedClasses(Job.class);
 		System.out.println("session factory");
 		return sessionBuilder.buildSessionFactory();
 	}
@@ -113,6 +117,16 @@ public class ApplicationContext {
 	@Bean(name="forumDao")
 	public IForumDao getForumDao(SessionFactory sessionFactory) {
 		return new ForumDaoImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name="job")
+	public Job getjob() {
+		return new Job();
+	}
+	@Autowired
+	@Bean(name="jobDao")
+	public IJobDao getJobDao(SessionFactory sessionFactory) {
+		return new JobDaoImpl(sessionFactory);
 	}
 	
 }

@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.niit.backend.model.Blog;
 import com.niit.backend.model.Forum;
 
 public class ForumDaoImpl implements IForumDao {
