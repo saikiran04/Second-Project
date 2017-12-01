@@ -1,0 +1,122 @@
+<head><style>
+body {
+background: url(images/x.jpg) no-repeat center fixed; 
+   background-size:cover;
+    border-radius: 5px;
+   
+    padding: 20px;
+     
+} 
+input[type=text], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+     display: inline-block; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button[type=submit] {
+     background-color: #00cc00;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+th {
+    background-color:  #CF7691;
+    color: white;
+}
+h1
+{
+font-size: 40px;
+color: #CF7691;
+}
+</style>
+
+</head>
+
+
+
+<body><div>
+	<hr>
+	<button type="button" data-toggle="modal" class="btn btn-primary btn-lg " data-target="#myModal">
+	Add New Blog</button>
+		
+	<h1>My Blogs</h1>
+	<span class="clearfix"></span>
+	</hr>
+	<hr>
+	</hr>
+	<table class="table table-inverse">
+		<thead>
+			<tr>
+				<th>blog id</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>category</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="blog in blogs">
+				<td>{{blog.blog_id}}</td>
+				<td>{{blog.title}}</td>
+				<td>{{blog.description}}</td>
+				<td>{{blog.category}}</td>
+				<td><button type="button" class="btn btn-primary btn-sm "
+						data-toggle="modal" data-target="#editblog"
+						ng-click="editBlog(blog)">Edit</button></td>
+				<td><button type="button" class="btn btn-danger btn-sm "
+						data-toggle="modal" data-target="#deleteblog"
+						ng-click="editBlog(blog)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- <form name="myForm" novalidate><h2>{{message}}</h2>
+	Category:<input type="text" name="category" ng-model="category" required>
+	<span ng-show="myForm.category.$dirty &&myForm.category.$error.required">Category is required</span><br>
+	Title:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="blog_title" ng-model="blog_title" required>
+	<span ng-show="myForm.blog_title.$dirty &&myForm.blog_title.$error.required">Title is required</span><br>
+	Description:<input type="text" name="description" ng-model="description" required>
+	<span ng-show="myForm.description.$dirty &&myForm.description.$error.required">Description is required</span><br>
+	<button type="submit" ng-disabled="myForm.$invalid" ng-click="createBlog()">Submit</button>
+	</form> -->
+	<div class="col-md-6 col-md-offset-3">
+<h2>{{message}}</h2>
+<form name="form" role="form">
+<div class="form-group" ng-class="{'has-error':form.category.$dirty && form.category.$error.required }">
+<label for="category">Category</label>
+<input type="text" name="category" id="category" class="form-control" ng-model="blog.category" required/>
+<span ng-show="form.category.$dirty && form.category.$error.required" class="help-block">category is required</span>
+
+</div>
+<div class="form-group" ng-class="{'has-error':form.blog_title.$dirty && form.lastName.$error.required }">
+<label for="blog_title">Title</label>&nbsp&nbsp&nbsp
+<input type="text" name="blog_title" id="blog_title" class="form-control" ng-model="blog.blog_title" required/>
+<span ng-show="form.blog_title.$dirty && form.blog_title.$error.required" class="help-block">Title is required</span>
+
+</div>
+<div class="form-group" ng-class="{'has-error':form.description.$dirty && form.description.$error.required }">
+<label for="description">Description</label>
+<input type="text" name="description" id="description" class="form-control" ng-model="blog.description" required/>
+<span ng-show="form.description.$dirty && form.description.$error.required" class="help-block">description is required</span>
+<button type="submit" ng-disabled="myForm.$invalid" ng-click="createBlog()">Submit</button>
+</div>
+</form>
+</div>
