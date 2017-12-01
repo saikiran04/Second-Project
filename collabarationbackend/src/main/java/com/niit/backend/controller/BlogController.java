@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.backend.dao.IBlogDao;
+import com.niit.backend.dao.IUserDao;
 import com.niit.backend.model.BaseDomain;
 import com.niit.backend.model.Blog;
 import com.niit.backend.model.BlogComment;
@@ -32,6 +33,9 @@ public class BlogController {
 	
 	@Autowired
 	Blog blog;
+	
+	@Autowired
+	IUserDao userDao;
 	
 	@RequestMapping(value="/blogs",method=RequestMethod.GET)
 	public ResponseEntity<List<Blog>> listAllBlogs(){
@@ -94,49 +98,34 @@ public class BlogController {
 				return new ResponseEntity<Blog> (blog,HttpStatus.OK);
 			}
 	}
+	@RequestMapping(value="/addblogcomment",method=RequestMethod.POST)
+	public ResponseEntity<?> addBlogComment(@RequestBody BlogComment blogComment,HttpSession session){
+		if(session.getAttribute("username")==null){
+			BaseDomain error=new BaseDomain();
+			return new ResponseEntity<BaseDomain>(error,HttpStatus.UNAUTHORIZED);
+		}
+		String username=(String)session.getAttribute("username");
+		User user=userDao.getName(username);
+		blogComment.setUser_name(username);//set the value for foreign key 'username' in blogcomment table
+		blogComment.setCommentDate(new Date());//set the value for commentedOn
+		try{
+		blogDao.addComment(blogComment);
+		return new ResponseEntity<BlogComment>(blogComment,HttpStatus.OK);
+		}catch(Exception e){
+			BaseDomain error=new BaseDomain();
+			return new ResponseEntity<BaseDomain>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+   @RequestMapping(value="/getblogcomments/{blogPostId}")
+	public ResponseEntity<?> getBlogComments(@PathVariable int blogPostId,HttpSession session){
+		if(session.getAttribute("username")==null){
+			BaseDomain error=new BaseDomain();
+			return new ResponseEntity<BaseDomain>(error,HttpStatus.UNAUTHORIZED);
+		}
+		List<BlogComment> blogComments=blogDao.getAllBlogComments(blogPostId);
+		return new ResponseEntity<List<BlogComment>>(blogComments,HttpStatus.OK);
+	}
 	
-	@RequestMapping(value="/blogcomment/{id}",method=RequestMethod.POST)
-	public ResponseEntity<BlogComment> createBlogComment(@PathVariable("id") int blog_id,@RequestBody BlogComment blogcomment,HttpSession httpSession){
-		logger.debug("calling method createBlogComment" + blogcomment.getBlog_id());
-		Integer loggedInUserID=(Integer) httpSession.getAttribute("loggedInUserID");
-		User username=(User) httpSession.getAttribute("loggedInUser");
-		blogcomment.setUser_id(loggedInUserID);
-		Date dt=new java.util.Date();
-		blogcomment.setCommentDate(dt.toString());
-		blogcomment.setUser_name(username.getUser_name());
-		blogcomment.setBlog_id(blog_id);
-		if(blogDao.addComment(blogcomment)==true){
-			blogcomment.setErrorCode("200");
-			blogcomment.setErrorMessage("Comment saved");
-		
-		}else{
-			return new ResponseEntity<BlogComment>(blogcomment,HttpStatus.BAD_REQUEST);
-		}
-				
-		return new ResponseEntity<BlogComment>(blogcomment,HttpStatus.OK);
-			}
-
-	@RequestMapping(value="/blogscommentlistperblog/{id}",method=RequestMethod.GET)
-	public ResponseEntity<List<BlogComment>> listAllBlogsCommentsPerBlog(@PathVariable("id") int blog_id){
-		logger.debug("calling method listAllBlogs");
-		List<BlogComment> blogcomment=blogDao.listComment(blog_id);
-		if(blogcomment.isEmpty()){
-			return new ResponseEntity<List<BlogComment>>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<List<BlogComment>>(blogcomment,HttpStatus.OK);
-	}
-
-
-	@RequestMapping(value="/blogscommentlist/",method=RequestMethod.GET)
-	public ResponseEntity<List<BlogComment>> listAllBlogsComments(){
-		logger.debug("calling method listAllBlogs");
-		List<BlogComment> blogcomment=blogDao.listOfAllComment();
-		if(blogcomment.isEmpty()){
-			return new ResponseEntity<List<BlogComment>>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<List<BlogComment>>(blogcomment,HttpStatus.OK);
-	}
-
 	
 	
 }

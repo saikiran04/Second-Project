@@ -1,6 +1,7 @@
 package com.niit.backend.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,10 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.backend.dao.IJobDao;
@@ -37,7 +38,7 @@ private static final Logger logger=LoggerFactory.getLogger(JobController.class);
 	@Autowired
 	IUserDao userDao;
 	
-	@RequestMapping(value="/saveJob",method=RequestMethod.GET)
+	@RequestMapping(value="/saveJob",method=RequestMethod.POST)
 	public ResponseEntity<?> save(@RequestBody Job job,HttpSession session){
 		if(session.getAttribute("username")==null) {
 			BaseDomain error=new BaseDomain();
@@ -60,10 +61,23 @@ private static final Logger logger=LoggerFactory.getLogger(JobController.class);
 		}
 	}
 	
-	/*@RequestMapping(value="/getAllJobs",method=RequestMethod.GET)
+	@RequestMapping(value="/getalljobs",method=RequestMethod.GET)
 	public ResponseEntity<?> getAllJobs(HttpSession session){
+		if(session.getAttribute("username")==null){
+			BaseDomain error=new BaseDomain();
+			return new ResponseEntity<BaseDomain>(error,HttpStatus.UNAUTHORIZED);
+		}
+		List<Job> jobs=jobDao.getAllJobs();
+		return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);
+	}
+	@RequestMapping(value="/getjobbyid/{id}",method=RequestMethod.GET)
+	public ResponseEntity<?> getJobById(@PathVariable int id,HttpSession session){
+		if(session.getAttribute("username")==null){
+			BaseDomain error=new BaseDomain();
+			return new ResponseEntity<BaseDomain>(error,HttpStatus.UNAUTHORIZED);
+		}
+		Job job=jobDao.get(id);
+		return new ResponseEntity<Job>(job,HttpStatus.OK);
 		
 	}
-	*/
-
 }

@@ -94,10 +94,10 @@ public class BlogDaoImpl implements IBlogDao {
 	}
 
 	@Transactional
-	public List<BlogComment> listOfAllComment() {
-		String hql="from BlogComment";
-		@SuppressWarnings("rawtypes")
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+	public List<BlogComment> getAllBlogComments(int id) {
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from BlogComment where id=?");
+		query.setInteger(0, id);
 		return query.list();
 	}
 	
@@ -108,5 +108,6 @@ public class BlogDaoImpl implements IBlogDao {
 		List<Blog> list=ct.list();
 		return list;
 	}
+	
 
 }

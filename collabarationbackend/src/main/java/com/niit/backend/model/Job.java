@@ -26,7 +26,7 @@ public class Job {
 	private String description;
 	private String location;
 	@NotEmpty(message="Please mention salary")
-	private double salary;
+	private String salary;
 	@NotEmpty(message="Please fill the skills Required")
 	private String skillsrequired;
 	private int experience;
@@ -72,10 +72,10 @@ public class Job {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public double getSalary() {
+	public String getSalary() {
 		return salary;
 	}
-	public void setSalary(double salary) {
+	public void setSalary(String salary) {
 		this.salary = salary;
 	}
 	public String getSkillsrequired() {

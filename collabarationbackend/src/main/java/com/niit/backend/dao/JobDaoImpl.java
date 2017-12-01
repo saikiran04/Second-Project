@@ -48,7 +48,7 @@ public class JobDaoImpl implements IJobDao {
 	@Transactional
 	public List<Job> getAllJobs() {
 		Session session=sessionFactory.getCurrentSession();
-		Query query=session.createQuery("fron Job");
+		Query query=session.createQuery("from Job");
 		return query.list();
 	}
 
