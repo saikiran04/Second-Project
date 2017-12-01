@@ -47,7 +47,7 @@
 				<li><a href="#/welcome" ng-hide="currentUser.firstname">Welcome</a></li>
 				<li><a href="#" ng-show="currentUser.firstname">Welcome {{currentUser.firstname}}{{currentUser.lastname}}</a></li>
 				<li><a href="#/updateprofile" ng-show="currentUser.firstname">Edit Profile</a></li>
-				<li><a href="#/savejob" ng-show="currentUser.firstname">Job</a></li>
+				<li><a href="#/job" ng-show="currentUser.firstname">Job</a></li>
 				<li><a href="#/blog" ng-show="currentUser.firstname">Add Blog Post</a></li>
 				<li><a href="#/register" ng-hide="currentUser.firstname">Sign Up</a></li>
 				<li><a href="#/login" ng-hide="currentUser.firstname">Sign In</a></li>
@@ -76,21 +76,12 @@
 
 
 	<script src="app.js"></script>
-	<script src="c_user/UserController.js"></script>
-	<script src="c_user/UserService.js"></script>
-	 <script src="c_user/BlogController.js"></script>
-	<script src="c_user/BlogService.js"></script>
-	<!-- <script src="c_event/EventController.js"></script>
-	<script src="c_event/EventService.js"></script>
-	<script src="c_forum/ForumController.js"></script>
-	<script src="c_forum/ForumService.js"></script>
-	<script src="c_friend/FriendController.js"></script>
-	<script src="c_friend/FriendService.js"></script>
-	<script src="c_job/JobController.js"></script>
-	<script src="c_job/JobService.js"></script>
-	<script src="c_chat/ChatController.js"></script>
-	<script src="c_chat/ChatService.js"></script>
-	<script src="c_friend/RequestController.js"></script>
-	<script src="c_friend/RequestService.js"></script>  -->
+	<script src="js/UserController.js"></script>
+	<script src="js/UserService.js"></script>
+	 <script src="js/BlogController.js"></script>
+	<script src="js/BlogService.js"></script>
+	<script src="js/JobController.js"></script>
+	<script src="js/JobService.js"></script>
+	
 
 	
