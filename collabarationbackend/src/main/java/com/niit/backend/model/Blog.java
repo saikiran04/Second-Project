@@ -3,6 +3,7 @@ package com.niit.backend.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,7 +25,8 @@ public class Blog extends BaseDomain {
 	private String status;
 	@NotEmpty(message="Please fill the description")
 	private String description;
-	private String user_name;
+	@ManyToOne
+	private User postedBy;
 	private int likes;
 	private String category;
 	
@@ -58,11 +60,12 @@ public class Blog extends BaseDomain {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getUser_name() {
-		return user_name;
+	
+	public User getPostedBy() {
+		return postedBy;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setPostedBy(User postedBy) {
+		this.postedBy = postedBy;
 	}
 	public int getLikes() {
 		return likes;

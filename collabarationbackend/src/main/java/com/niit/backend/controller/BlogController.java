@@ -54,7 +54,7 @@ public class BlogController {
 		Date dt=new java.util.Date();
 		blog.setCreation_date(dt.toString());
 		User user=(User) httpSession.getAttribute("loggedInUser");
-		blog.setUser_name(user.getUser_name());
+		blog.setPostedBy(user);
 		//blog.setUser_name("student1");
 		blog.setStatus("Published");
 		try {
@@ -106,8 +106,10 @@ public class BlogController {
 		}
 		String username=(String)session.getAttribute("username");
 		User user=userDao.getName(username);
-		blogComment.setUser_name(username);//set the value for foreign key 'username' in blogcomment table
-		blogComment.setCommentDate(new Date());//set the value for commentedOn
+		
+		
+		blogComment.setCommentedBy(user);//set the value for foreign key 'username' in blogcomment table
+		blogComment.setCommentedOn(new Date());//set the value for commentedOn
 		try{
 		blogDao.addComment(blogComment);
 		return new ResponseEntity<BlogComment>(blogComment,HttpStatus.OK);
@@ -116,13 +118,13 @@ public class BlogController {
 			return new ResponseEntity<BaseDomain>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-   @RequestMapping(value="/getblogcomments/{blogPostId}")
-	public ResponseEntity<?> getBlogComments(@PathVariable int blogPostId,HttpSession session){
+   @RequestMapping(value="/getblogcomments/{blogId}")
+	public ResponseEntity<?> getBlogComments(@PathVariable int blogId,HttpSession session){
 		if(session.getAttribute("username")==null){
 			BaseDomain error=new BaseDomain();
 			return new ResponseEntity<BaseDomain>(error,HttpStatus.UNAUTHORIZED);
 		}
-		List<BlogComment> blogComments=blogDao.getAllBlogComments(blogPostId);
+		List<BlogComment> blogComments=blogDao.getAllBlogComments(blogId);
 		return new ResponseEntity<List<BlogComment>>(blogComments,HttpStatus.OK);
 	}
 	

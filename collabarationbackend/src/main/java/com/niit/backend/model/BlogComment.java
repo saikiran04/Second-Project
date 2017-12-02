@@ -4,7 +4,10 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -12,57 +15,52 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="BLOG_COMMENTS")
-@Component
+@Table(name="BLOGCOMMENTS")
 public class BlogComment extends BaseDomain {
 	
 	@Id
-	@GeneratedValue(generator="InvSeq")
-	@SequenceGenerator(name="InvSeq",sequenceName="BLOG_COMMENT_SEQ", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	@NotEmpty(message="Please fill some comment")
-	private String comments;
-	@NotEmpty(message="Please fill the comment date")
-	private Date commentDate;
-	private int user_id;
-	private int blog_id;
-	private String user_name;
+	@ManyToOne
+	@JoinColumn(name="blog_id")
+	private Blog blog;
+	@ManyToOne
+	@JoinColumn(name="user_name")
+	private User commentedBy;
+	private Date commentedOn;
+	private String commentText;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getComments() {
-		return comments;
+	public Blog getBlog() {
+		return blog;
 	}
-	public void setComments(String comments) {
-		this.comments = comments;
+	public void setBlog(Blog blog) {
+		this.blog = blog;
 	}
-	public Date getCommentDate() {
-		return commentDate;
+	public User getCommentedBy() {
+		return commentedBy;
 	}
-	public void setCommentDate(Date commentDate) {
-		this.commentDate = commentDate;
+	public void setCommentedBy(User commentedBy) {
+		this.commentedBy = commentedBy;
 	}
-	public int getUser_id() {
-		return user_id;
+	public Date getCommentedOn() {
+		return commentedOn;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setCommentedOn(Date commentedOn) {
+		this.commentedOn = commentedOn;
 	}
-	public int getBlog_id() {
-		return blog_id;
+	public String getCommentText() {
+		return commentText;
 	}
-	public void setBlog_id(int blog_id) {
-		this.blog_id = blog_id;
+	public void setCommentText(String commentText) {
+		this.commentText = commentText;
 	}
-	public String getUser_name() {
-		return user_name;
-	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
+	
+	
 	
 	
 }

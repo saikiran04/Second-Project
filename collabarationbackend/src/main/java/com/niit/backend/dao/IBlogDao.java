@@ -22,9 +22,8 @@ public void save(Blog blog);
 	
 	List<Blog> viewAllBlogs();
 	
-	public boolean addComment(BlogComment blogcomment);
-	
-	public List<BlogComment> getAllBlogComments(int id);
+	public void addComment(BlogComment blogComment);
+	List<BlogComment> getAllBlogComments(int blogid);
 	
 	
 
