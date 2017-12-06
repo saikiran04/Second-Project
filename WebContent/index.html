@@ -46,8 +46,15 @@
 				<li><a href="#/about" ng-hide="currentUser.firstname">About Us</a></li>
 				<li><a href="#/welcome" ng-hide="currentUser.firstname">Welcome</a></li>
 				<li><a href="#" ng-show="currentUser.firstname">Welcome {{currentUser.firstname}}{{currentUser.lastname}}</a></li>
+				<!-- <div class="media" style="float:left;">
+					
+					<img src="/CollabarationFrontend/img/{{currentUser.user_name}}.jpg" class="media-object" style="width:80px"></img>
+					</div> -->
 				<li><a href="#/updateprofile" ng-show="currentUser.firstname">Edit Profile</a></li>
-				<li><a href="#/job" ng-show="currentUser.firstname">Job</a></li>
+				<li ><a href="#/getalljobs" ng-show="currentUser.firstname">Jobs</a></li>
+				
+				<li ng-if="currentUser.role=='ADMIN'"><a href="#/job" ng-show="currentUser.firstname">Add Job</a></li>
+				
 				<li><a href="#/blog" ng-show="currentUser.firstname">Add Blog Post</a></li>
 				<li><a href="#/register" ng-hide="currentUser.firstname">Sign Up</a></li>
 				<li><a href="#/login" ng-hide="currentUser.firstname">Sign In</a></li>

@@ -28,6 +28,15 @@ myApp.config(function($routeProvider){
 		templateUrl:'c_user/job.html',
 		controller:'JobController'
 	})
+	.when('/getalljobs',{
+		templateUrl:'c_user/jobtitles.html',
+		controller:'JobController'
+	})
+	
+	.when('/save',{
+		templateUrl:'c_user/job.html',
+		controller:'JobController'
+	})
 	.otherwise({
 		templateUrl:'c_home/home.html'
 		})

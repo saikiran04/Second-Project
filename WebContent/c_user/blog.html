@@ -88,15 +88,7 @@ color: #CF7691;
 			</tr>
 		</tbody>
 	</table>
-	<!-- <form name="myForm" novalidate><h2>{{message}}</h2>
-	Category:<input type="text" name="category" ng-model="category" required>
-	<span ng-show="myForm.category.$dirty &&myForm.category.$error.required">Category is required</span><br>
-	Title:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="blog_title" ng-model="blog_title" required>
-	<span ng-show="myForm.blog_title.$dirty &&myForm.blog_title.$error.required">Title is required</span><br>
-	Description:<input type="text" name="description" ng-model="description" required>
-	<span ng-show="myForm.description.$dirty &&myForm.description.$error.required">Description is required</span><br>
-	<button type="submit" ng-disabled="myForm.$invalid" ng-click="createBlog()">Submit</button>
-	</form> -->
+	
 	<div class="col-md-6 col-md-offset-3">
 <h2>{{message}}</h2>
 <form name="form" role="form">
@@ -120,3 +112,18 @@ color: #CF7691;
 </div>
 </form>
 </div>
+</div>
+<div class="row">
+ <div>
+ <div class="panel panel-default">
+ <div class="panel-heading">
+ <div>{{blog.blog_title}}</div>
+ <span><strong>Created By:</strong>{{blog.postedBy}}</span>
+ <span><strong>on:</strong>{{blog.creation_date |date:'medium'}}</span>
+ </div>
+ <div class="panel-body">{{blog.description}}</div>
+ </div>
+ 
+ </div>
+</div>
+</body>
