@@ -55,7 +55,11 @@ private static final Logger logger=LoggerFactory.getLogger(JobController.class);
 				BaseDomain error=new BaseDomain();
 				return new ResponseEntity<BaseDomain>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-		}else {
+		}
+
+			
+		
+		else {
 			BaseDomain error=new BaseDomain();
 			return new ResponseEntity<BaseDomain>(error,HttpStatus.UNAUTHORIZED);
 		}

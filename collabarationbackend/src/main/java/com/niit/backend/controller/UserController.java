@@ -1,5 +1,8 @@
 package com.niit.backend.controller;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.niit.backend.dao.IUserDao;
 import com.niit.backend.model.BaseDomain;
@@ -43,8 +47,24 @@ public class UserController {
 	public ResponseEntity<?> registerUser(@RequestBody User user){
 		try {
 			System.out.println("I am here");
+			
 		
 			user.setIsOnline('f');
+			MultipartFile image=user.getImg();
+			Path path;
+			path=Paths.get("C:\\Users\\Asaikiran\\git1\\CollabarationFrontend\\WebContent\\img\\" +user.getUser_name() + ".jpg");
+			System.out.println("Path=" + path);
+			System.out.println("File name=" + user.getImg().getOriginalFilename());
+			if(image !=null&& !image.isEmpty()) {
+				try {
+					image.transferTo(new File(path.toString()));
+					System.out.println("Image saved in: " +path.toString());
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+					System.out.println("Image not saved");
+				}
+			}
 			userDao.save(user);
 			return new ResponseEntity<User>(user,HttpStatus.OK);
 		
@@ -85,6 +105,9 @@ public class UserController {
 		session.removeAttribute("username");
 		session.removeAttribute("userid");
 		session.invalidate();
+		 
+		
+		
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	

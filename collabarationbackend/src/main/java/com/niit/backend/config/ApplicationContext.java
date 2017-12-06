@@ -16,8 +16,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.backend.dao.BlogDaoImpl;
 import com.niit.backend.dao.ForumDaoImpl;
+import com.niit.backend.dao.FriendDaoImpl;
 import com.niit.backend.dao.IBlogDao;
 import com.niit.backend.dao.IForumDao;
+import com.niit.backend.dao.IFriendDao;
 import com.niit.backend.dao.IJobDao;
 import com.niit.backend.dao.IUserDao;
 import com.niit.backend.dao.JobDaoImpl;
@@ -25,6 +27,7 @@ import com.niit.backend.dao.UserDaoImpl;
 import com.niit.backend.model.Blog;
 import com.niit.backend.model.BlogComment;
 import com.niit.backend.model.Forum;
+import com.niit.backend.model.Friend;
 import com.niit.backend.model.Job;
 import com.niit.backend.model.User;
 
@@ -68,6 +71,7 @@ public class ApplicationContext {
 		sessionBuilder.addAnnotatedClasses(BlogComment.class);
 		sessionBuilder.addAnnotatedClasses(Forum.class);
 		sessionBuilder.addAnnotatedClasses(Job.class);
+		sessionBuilder.addAnnotatedClasses(Friend.class);
 		System.out.println("session factory");
 		return sessionBuilder.buildSessionFactory();
 	}
@@ -128,5 +132,14 @@ public class ApplicationContext {
 	public IJobDao getJobDao(SessionFactory sessionFactory) {
 		return new JobDaoImpl(sessionFactory);
 	}
-	
+	@Autowired
+	@Bean(name="friend")
+	public Job getfriend() {
+		return new Job();
+	}
+	@Autowired
+	@Bean(name="friendDao")
+	public IFriendDao getFriendDao(SessionFactory sessionFactory) {
+		return new FriendDaoImpl(sessionFactory);
+	}
 }
