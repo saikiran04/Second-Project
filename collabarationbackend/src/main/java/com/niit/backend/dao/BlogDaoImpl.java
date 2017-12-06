@@ -14,9 +14,8 @@ import org.springframework.stereotype.Repository;
 
 import com.niit.backend.model.Blog;
 import com.niit.backend.model.BlogComment;
-import com.niit.backend.model.User;
 
-@SuppressWarnings("deprication")
+@SuppressWarnings("deprecation")
 @Repository(value="BlogDao")
 public class BlogDaoImpl implements IBlogDao {
 
@@ -73,17 +72,14 @@ public class BlogDaoImpl implements IBlogDao {
 	}
 
 	@Transactional
-	public boolean addComment(BlogComment blogcomment) {
-		try {
-			sessionFactory.getCurrentSession().save(blogcomment);
-			return true;
-		}catch(Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	public void addComment(BlogComment blogComment) {
+		sessionFactory.getCurrentSession().save(blogComment);
+
 	}
 
-	@Transactional
+	
+
+	/*@Transactional
 	public List<BlogComment> listComment(int id) {
 		System.out.println("in comment daoimpl");
 		Criteria ct=sessionFactory.getCurrentSession().createCriteria(BlogComment.class);
@@ -91,13 +87,13 @@ public class BlogDaoImpl implements IBlogDao {
 		List list=ct.list();
 		return list;
 		
-	}
+	}*/
 
 	@Transactional
-	public List<BlogComment> listOfAllComment() {
-		String hql="from BlogComment";
-		@SuppressWarnings("rawtypes")
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+	public List<BlogComment> getAllBlogComments(int id) {
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from BlogComment where blog.blog_id=?");
+		query.setInteger(0, id);
 		return query.list();
 	}
 	
@@ -108,5 +104,6 @@ public class BlogDaoImpl implements IBlogDao {
 		List<Blog> list=ct.list();
 		return list;
 	}
+	
 
 }

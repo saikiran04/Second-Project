@@ -25,7 +25,7 @@ import com.niit.backend.model.User;
 @RestController
 public class ForumController {
 	
-private static final Logger logger=LoggerFactory.getLogger(BlogController.class);
+private static final Logger logger=LoggerFactory.getLogger(ForumController.class);
 	
 	@Autowired
 	IForumDao forumDao;
