@@ -1,0 +1,43 @@
+<div ng-controller="RequestController as ctrl">
+<div ng-show="currentUser.firstname==''">
+<div class="alert alert-danger fade in">You are not Logged in</div>
+</div>
+</div>
+<div class="container" ng-controller="RequestController as ctrl">
+ Find Friends
+ <div class="form-group"></div>
+
+ Search
+ 
+ <p>
+ <input type="text" ng-model="user.ctrl.user_name">
+ </p>
+ 
+ <table class="table table-hover">
+ <tr>
+ <th></th>
+ <th>User ID</th>
+ <th>User Name</th>
+ <th>Email</th>
+ <th>Contact</th>
+ <th>Role</th>
+ <th>ISOnline</th>
+ 
+ </tr>
+ <tr ng-repeat="user in ctrl.users | filter:user.ctrl.user_name">
+ <td><img src="{{user.user_name}}.jpg"></td>
+ <td>{{user.user_id}}</td>
+ <td>{{user.user_name}}</td>
+ <td>{{user.email}}</td>
+ <td>{{user.contact}}</td>
+ <td>{{user.role}}</td>
+ <td>{{user.isOnline}}</td>
+ 
+ <td><button type="button" ng-click="ctrl.sendFriendRequest(user.user_id)" class="btn btn-warning btn-sm">Send Friend Request</button></td>
+ <td><a href="#/chat" class="btn btn-danger btn-sm">Chat</a></td>
+ </tr>
+ </table>
+
+</div>
+<br/>
+<br/>

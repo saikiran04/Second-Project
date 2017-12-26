@@ -8,7 +8,11 @@ myApp.controller('UserController',
 		//console.log("UserController...")
 		$scope.user={}
 		$scope.registerUser=function(){
-			UserService.registerUser($scope.user).then(
+			
+			var userformdata=UserService.profilePic($scope.user);
+			
+			
+			UserService.registerUser(userformdata).then(
 					function(response){
 						$scope.message="Registered succesfully.. please login"
 							$location.path('/login')
@@ -19,6 +23,18 @@ myApp.controller('UserController',
 						$location.path('/register')
 					})
 		}
+		
+		$scope.fetchAllUsers=function(){
+			UserService.fetchAllUsers().then(function(d){
+				$scope.user=d;
+				console.log("get all users in user controller.js ...")
+			},
+			function(errResponse){
+				console.error('Error while fetching users')
+			});
+		};
+		$scope.fetchAllUsers();
+		
 		$scope.isValidUser=function(){
 			UserService.isValidUser($scope.user).then(function(response){
 				console.log(response.data)
@@ -60,113 +76,19 @@ myApp.controller('UserController',
 		}
 })
 
-		/*self.users=[];
-		
-		self.friend={
-				id:'',
-				friend_id:'',
-				friend_name:'',
-				user_id:'',
-				request_status:'',
-				isOnline:'',
-				errorCode:'',
-				errorMessage:''
-				};
-		self.friends=[];
-Fetch All Users
-		
-		self.fetchAllUsers=function(){
-			UserService.fetchAllUsers().then(function(d){
-				self.users=d;
-			},function(errResponse){
-				console.error('Error while fetching users');
+myApp.directive('fileModel',['$parse',function ($parse){
+	return {
+		restrict:'A',
+		link:function (scope,element,attrs){
+			var model=$parse(attrs.fileModel);
+			var modelSetter=model.assign;
+			
+			element.bind('change',function(){
+				scope.$apply(function(){
+					modelSetter(scope,element[0].files[0]);
+				});
 			});
-		};
-		self.fetchAllUsers();
+		}
+	};
+}]);
 		
-		Create users
-		
-		self.createUser=function(user){
-			UserService.createUser(user)
-			.then(self.fetchAllUsers,
-					function(errResponse){
-				console.error('Error while creating user..');
-			});
-		};
-	Update User	
-		self.createUser=function(user){
-			UserService.updateUser(user)
-			.then(self.fetchAllUsers,
-					function(errResponse){
-				console.error('Error while updating user..');
-			});
-		};
-Authentication of user
-		self.authenticate=function(user){
-			UserService.authenticate(user)
-			.then(function(d){
-				self.user=d;
-				if(self.user.email=="admin@gmail.com"&&self.user.password=="admin"){
-					$location.path('/admin')
-				}
-				else if($rrotScope.currentUser){
-					$location.path('/');
-				}
-			},function(errResponse){
-				console.error('Error while authenticating user..');
-			});
-		};
-		
-		//Delete User
-		self.deleteUser=function(user){
-			UserService.createUser(user)
-			.then(self.fetchAllUsers,
-					function(errResponse){
-				console.error('Error while deleting user..');
-			});
-			self.login=function(){
-				{
-					console.log('login validation????',self.user);
-					self.authenticate(self.user);
-				}
-			};
-			self.logout=function(){
-				console.log('Logging out');
-				UserServices.logout()
-				.then(function(){
-					if(self.errorCode==200){
-						console.log("You have successfully logged out!");
-						alert("you have succesfully logged out");
-					}
-				},
-				function(errResponse){
-					console.error('Error while logging out');
-				})
-			};
-			self.submit=function(){
-				console.log('saving New user',self.user);
-				self.createUser(self.user);
-				
-				self.reset();
-				
-			};
-			self.reset=function(){
-				console.log('reset user',self.user);
-				self.user={
-						user_id:'',
-						user_name:'',
-						password:'',
-						cpassword:'',
-						contact:'',
-						address:'',
-						email:'',
-						role:'',
-						image:'',
-						isOnline:'',
-						errorCode:'',
-						errorMessage:''
-						
-				};
-			};
-		};
-	}*/

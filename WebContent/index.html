@@ -56,6 +56,8 @@
 				<li ng-if="currentUser.role=='ADMIN'"><a href="#/job" ng-show="currentUser.firstname">Add Job</a></li>
 				
 				<li><a href="#/blog" ng-show="currentUser.firstname">Add Blog Post</a></li>
+				<li><a href="#/addFriend" ng-show="currentUser.firstname">Friends</a></li>
+				<li><a href="#/chat_forum" ng-show="currentUser.firstname">chat</a></li>
 				<li><a href="#/register" ng-hide="currentUser.firstname">Sign Up</a></li>
 				<li><a href="#/login" ng-hide="currentUser.firstname">Sign In</a></li>
 				<li><a href="" ng-click="logout()" ng-show="currentUser.firstname">logout</a>
@@ -89,6 +91,15 @@
 	<script src="js/BlogService.js"></script>
 	<script src="js/JobController.js"></script>
 	<script src="js/JobService.js"></script>
-	
+	<script src="js/FriendController.js"></script>
+	<script src="js/FriendService.js"></script>
+	<script src="js/RequestController.js"></script>
+	<script src="js/RequestService.js"></script>
+	<script src="c_chat_forum/ChatForumController.js"></script>
+	<script src="c_chat_forum/ChatForumService.js"></script>
+	<!-- <script src="libs/angular"></script>
+	<script src="libs/lodash"></script>
+	<script src="libs/sockjs"></script>
+	<script src="libs/stomp-websocket"></script> -->
 
 	

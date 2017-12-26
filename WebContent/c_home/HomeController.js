@@ -1,6 +1,6 @@
 /**
  * 
- */
+ *//*
 'use strict';
 myApp.controller('HomeController',['$scope','UserService','@rootScope',
 									function($scope,UserSevice,$rootScope){
@@ -33,4 +33,4 @@ myApp.controller('HomeController',['$scope','UserService','@rootScope',
 	}
 	self.getCurrentUser();
 	
-}])
+}])*/
