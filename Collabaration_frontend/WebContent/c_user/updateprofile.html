@@ -1,0 +1,19 @@
+<center>
+<form>
+<table>
+<!-- <tr><td>User ID</td><td><input type="text" ng-model="currentUser.user_id" disabled></td></tr> -->
+<tr><td>User Name</td><td><input type="text" ng-model="currentUser.user_name"></td></tr>
+<tr><td>Password</td><td><input type="password" ng-model="currentUser.password"></td></tr>
+<tr><td>First Name</td><td><input type="text" ng-model="currentUser.firstname"></td></tr>
+<tr><td>Last Name</td><td><input type="text" ng-model="currentUser.lastname"></td></tr>
+<tr><td>Email Id</td><td><input type="email" ng-model="currentUser.email"></td></tr>
+<tr><td>Phone Number</td><td><input type="text" ng-model="currentUser.contact"></td></tr>
+<!-- <tr><td>Select Role</td><td><input type="radio" value="STUDENT" ng-model="currentUser.role">Student <input type="radio" value="ALUMINI" ng-model="currentUser.role">Alumini <input type="radio" value="EMPLOYEE" ng-model="currentUser.role">Employee</td></tr>
+ -->
+ <tr><td><img src="img/{{currentUser}}.jpg"></td></tr>
+ <tr><td></td><td><input type="submit" ng-click="updateUser()"></td></tr>
+
+</table>
+
+</form>
+</center>
