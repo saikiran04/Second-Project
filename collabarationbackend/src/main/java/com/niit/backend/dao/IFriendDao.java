@@ -9,5 +9,11 @@ public interface IFriendDao {
 	void updateFriend(Friend friend);
 	void deleteFriend(Friend friend);
 	List<Friend> viewFriends(String name);
+	
+	public List<Friend> getMyNewFriendRequest(String name);
+	
+	public void setOnline(int userId);
+	
+	public void setOffline(int userId);
 
 }

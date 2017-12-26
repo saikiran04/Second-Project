@@ -1,6 +1,7 @@
 package com.niit.backend.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -12,10 +13,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +35,7 @@ public class UserController {
 	@Autowired
 	IUserDao userDao;
 	
-	@RequestMapping(value="users",method=RequestMethod.GET)
+	@RequestMapping(value="/users",method=RequestMethod.GET)
 	public ResponseEntity<List<User>> listAllUsers(){
 		logger.debug("Calling method list all users");
 		List<User> user=userDao.list();
@@ -43,7 +46,7 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(value="/registeruser",method=RequestMethod.POST)
+	/*@RequestMapping(value="/registeruser",method=RequestMethod.POST)
 	public ResponseEntity<?> registerUser(@RequestBody User user){
 		try {
 			System.out.println("I am here");
@@ -73,7 +76,7 @@ public class UserController {
 			return new ResponseEntity<BaseDomain>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 					
 		}
-	}
+	}*/
 	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public ResponseEntity<?> isValidUser(@RequestBody User user,HttpSession session){
@@ -157,5 +160,39 @@ public class UserController {
     		BaseDomain error=new BaseDomain();
     		return new ResponseEntity<BaseDomain>(error,HttpStatus.INTERNAL_SERVER_ERROR);
     	}
+    }
+    
+    
+    @RequestMapping(value="/fileUpload",method=RequestMethod.POST)
+    public void registerUser(@RequestParam("myFile") MultipartFile file,@RequestParam("user_name") String username,@RequestParam("firstname") String firstname,@RequestParam("lastname") String lastname,@RequestParam("email") String email,@RequestParam("password") String password,@RequestParam("contact") String contact,@RequestParam("role") String role)
+    {
+    	System.out.println("Inside image upload");
+    	System.out.println("file:"+file);
+    	System.out.println("Name:"+username+"/t"+password+"/t"+firstname);
+    	int x=Integer.parseInt(contact);
+    	User user=new User();
+    	user.setEmail(email);
+    	user.setFirstname(firstname);
+    	user.setLastname(lastname);
+    	user.setContact(x);
+    	user.setPassword(password);
+    	user.setRole(role);
+    	user.setUser_name(username);
+    	user.setIsOnline('n');
+    	userDao.save(user);
+    	
+    	Path path=Paths.get("C:\\Users\\Asaikiran\\git1\\CollabarationFrontend\\WebContent\\img\\" +user.getUser_name() + ".jpg");
+    	if(file!=null)
+    	{
+    		try {
+    			file.transferTo(new File(path.toString()));
+    		}catch(IllegalStateException e) {
+    			e.printStackTrace();
+    		}catch(IOException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	
+    	
     }
 }

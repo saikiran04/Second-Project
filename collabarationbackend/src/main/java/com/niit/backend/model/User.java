@@ -43,9 +43,18 @@ public class User extends BaseDomain {
 	
 	private char isOnline;
 	
+	@Transient
+	private String imageData;
 
+	public String getImageData() {
+		return imageData;
+	}
+	public void setImageData(String imageData) {
+		this.imageData = imageData;
+	}
 	@Transient
 	private MultipartFile img;
+	
 	
 	
 	public MultipartFile getImg() {

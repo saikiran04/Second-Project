@@ -134,11 +134,11 @@ public class ApplicationContext {
 	}
 	@Autowired
 	@Bean(name="friend")
-	public Job getfriend() {
-		return new Job();
+	public Friend getfriend() {
+		return new Friend();
 	}
 	@Autowired
-	@Bean(name="friendDao")
+	@Bean(name="IfriendDao")
 	public IFriendDao getFriendDao(SessionFactory sessionFactory) {
 		return new FriendDaoImpl(sessionFactory);
 	}

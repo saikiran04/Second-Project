@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.niit.backend.model.Friend;
 
-@Repository
+@Repository(value="IfriendDao")
 public class FriendDaoImpl implements IFriendDao {
 	
 	
@@ -49,6 +50,34 @@ public class FriendDaoImpl implements IFriendDao {
 		
 		List<Friend> list=ct.list();
 		return list;
+	}
+
+	@Transactional
+	public List<Friend> getMyNewFriendRequest(String name) {
+		String hql="from friend where name='" +name+"' and request_status='"+"N'";
+		@SuppressWarnings("rawtypes")
+		Query query =sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Friend> list=(List<Friend>) query.list();
+		return list;
+	}
+
+	@Transactional
+	public void setOnline(int userId) {
+		String hql="UPDATE Friend SET isOnline='Y' where id="+userId;
+		
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		query.executeUpdate();
+		
+	}
+
+	@Transactional
+	public void setOffline(int userId) {
+		String hql="UPDATE Friend SET isOnline='N' where id="+userId;
+		
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		query.executeUpdate();
+		
 	}
 
 }
