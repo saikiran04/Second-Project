@@ -28,6 +28,30 @@ myApp.config(function($routeProvider){
 		templateUrl:'c_user/job.html',
 		controller:'JobController'
 	})
+	.when('/getalljobs',{
+		templateUrl:'c_user/jobtitles.html',
+		controller:'JobController'
+	})
+	
+	.when('/save',{
+		templateUrl:'c_user/job.html',
+		controller:'JobController'
+	})
+	.when('/addFriend',{
+		templateUrl:'c_user/list_friend.html',
+		controller:'FriendController'
+	})
+	.when('/viewFriends',{
+		templateUrl:'c_user/list_friend.html',
+		controller:'FriendController'
+	})
+	.when('/chat_forum',{
+		templateUrl:'c_chat_forum/chat_forum.html',
+		controller:'ChatForumController'
+	})
+	
+	
+	
 	.otherwise({
 		templateUrl:'c_home/home.html'
 		})

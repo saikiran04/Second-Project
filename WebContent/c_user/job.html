@@ -1,0 +1,45 @@
+<div class="container">
+	<span style="color: red">{{error.message}}</span>
+	<form method="POST">
+		<div class="form-group">
+			Enter Job Title : <input type="text" ng-model="job.job_title"
+				class="form-control">
+		</div>
+
+		<div class="form-group">
+			Enter Job Description:
+			<textarea rows="4" cols="15" ng-model="job.description"
+				class="form-control"></textarea>
+		</div>
+
+		<div class="form-group">
+			Enter Skills Required: <input type="text"
+				ng-model="job.skillsrequired" class="form-control">
+		</div>
+
+		<div class="form-group">
+			Enter Years of Experience: <input type="text" ng-model="job.experience"
+				class="form-control">
+		</div>
+
+		<div class="form-group">
+			Enter Salary:<input type="text" ng-model="job.salary"
+				class="form-control">
+		</div>
+
+		<div class="form-group">
+			Enter Location :<input type="text" ng-model="job.location"
+				class="form-control">
+		</div>
+
+		<div class="form-group">
+			Enter Company Name: <input type="text" ng-model="job.company"
+				class="form-control">
+		</div>
+
+		<div class="form-group">
+			<input type="submit" ng-click="save()" class="form-control">
+		</div>
+
+	</form>
+</div>

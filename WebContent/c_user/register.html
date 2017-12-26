@@ -14,7 +14,7 @@
 
 </div>
 <div class="form-group" ng-class="{'has-error':form.firstName.$dirty && form.userName.$error.required }">
-<label for="username">User name</label>
+<label for="user_name">User name</label>
 <input type="text" name="user_name" id="user_name" class="form-control" ng-model="user.user_name" required/>
 <span ng-show="form.userName.$dirty && form.userName.$error.required" class="help-block">User name is required</span>
 
@@ -46,6 +46,9 @@
 <span ng-show="form.contact.$dirty && form.contact.$error.required" class="help-block">Contact is required</span>
 
 </div>
+
+
+
 <div class="form-group" ng-class="{'has-error':form.firstName.$dirty && form.firstName.$error.required }">
 <label for="role">Role</label>
 <input type="radio" value="Student" ng-model="user.role">Student 
@@ -53,6 +56,7 @@
 <input type="radio" value="Employee" ng-model="user.role">Employee
 <span ng-show="form.role.$dirty && form.role.$error.required" class="help-block"></span>
 </div>
+<input type="file" file-model="user.myFile"/><br>
 <div class="form-actions">
 <button type="submit" class="btn btn-primary" ng-click="registerUser()">Register</button>
 <a href="#!/login" class="btn btn-link">Cancel</a>
