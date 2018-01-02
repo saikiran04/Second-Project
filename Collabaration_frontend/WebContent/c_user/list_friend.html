@@ -25,7 +25,7 @@
  
  </tr>
  <tr ng-repeat="user in ctrl.users | filter:user.ctrl.user_name">
- <td><img src="{{user.user_name}}.jpg"></td>
+ <td><img src="img/{{user.user_name}}.jpg" height="100px" width="100px"></td>
  <td>{{user.user_id}}</td>
  <td>{{user.user_name}}</td>
  <td>{{user.email}}</td>
@@ -34,7 +34,7 @@
  <td>{{user.isOnline}}</td>
  
  <td><button type="button" ng-click="ctrl.sendFriendRequest(user.user_id)" class="btn btn-warning btn-sm">Send Friend Request</button></td>
- <td><a href="#/chat" class="btn btn-danger btn-sm">Chat</a></td>
+ <td><a href="#/chat_forum" class="btn btn-danger btn-sm">Chat</a></td>
  </tr>
  </table>
 

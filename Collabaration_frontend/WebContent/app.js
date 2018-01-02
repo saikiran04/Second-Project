@@ -37,12 +37,12 @@ myApp.config(function($routeProvider){
 		templateUrl:'c_user/job.html',
 		controller:'JobController'
 	})
-	.when('/addFriend',{
+	.when('/listFriend',{
 		templateUrl:'c_user/list_friend.html',
 		controller:'FriendController'
 	})
 	.when('/viewFriends',{
-		templateUrl:'c_user/list_friend.html',
+		templateUrl:'c_user/view_friend.html',
 		controller:'FriendController'
 	})
 	.when('/chat_forum',{

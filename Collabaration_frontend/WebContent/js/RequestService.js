@@ -25,7 +25,7 @@ myApp.factory('RequestService',['$http','$q','$rootScope',function($http,$q,$roo
 		},
 	/*Send Friend Request*/
 		sendFriendRequest:function(id){
-			return $http.delete(BASE_URL+'/addFriend/',id)
+			return $http.post(BASE_URL+'/addFriend/'+id)
 			.then(
 					function(response){
 						return response.data;

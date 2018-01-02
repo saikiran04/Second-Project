@@ -28,7 +28,7 @@ return{
 	
 	/*GET MY FRIENDS LIST*/
 	getMyFriends:function(){
-		return $http.get(BASE_URL+'/viewFriends/')
+		return $http.get(BASE_URL+'/myFriends')
 		.then(
 				function(response){
 					return response.data;

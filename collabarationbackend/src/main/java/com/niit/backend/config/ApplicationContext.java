@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.niit.backend.dao.BlogDaoImpl;
 import com.niit.backend.dao.ForumDaoImpl;
@@ -83,6 +84,13 @@ public class ApplicationContext {
 		HibernateTransactionManager transactionManager=new HibernateTransactionManager(sessionFactory);
 		System.out.println("transaction managaer");
 		return transactionManager;
+	}
+	
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+		resolver.setDefaultEncoding("utf-8");
+		return resolver;
 	}
 	@Autowired
 	@Bean(name="user")

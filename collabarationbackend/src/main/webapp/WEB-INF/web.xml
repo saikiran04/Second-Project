@@ -4,7 +4,7 @@
  http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
 	<display-name>Created Web Application</display-name>
-<context-param>
+<!-- <context-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
 		</context-param>
@@ -23,7 +23,7 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-<!-- <filter>
+<filter>
 <filter-name>springSecurityFilterChain</filter-name>
 <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 </filter>
@@ -31,7 +31,7 @@
 <filter-mapping>
 <filter-name>springSecurityFilterChain</filter-name>
 <url-pattern>/*</url-pattern>
-</filter-mapping> -->
+</filter-mapping>
 <listener> <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
-		</listener>
+		</listener> -->
 </web-app>

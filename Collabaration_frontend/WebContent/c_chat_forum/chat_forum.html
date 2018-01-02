@@ -1,4 +1,4 @@
-j<p>
+<p>
 <p>
 <div ng-controller="ChatForumController" class="container">
 
@@ -13,6 +13,7 @@ j<p>
       </form>
 	<p ng-repeat="message in messages | orderBy:'time':true"
 		class="message">
+		<img src="img/{{currentUser.user_name}}.jpg" width="100px" height="100px" class="img-rounded"/>
 		<time>{{message.time | date:'HH:mm'}}</time>
 		<span>{{message.time}} Says : {{message}}</span>
 		<!-- <span ng-class="{self:message.self}">{{message.msg}}</span> -->

@@ -9,5 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @ComponentScan(basePackages="com")
 public class WebConfig extends WebMvcConfigurerAdapter {
+	
 
 }

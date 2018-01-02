@@ -56,7 +56,8 @@
 				<li ng-if="currentUser.role=='ADMIN'"><a href="#/job" ng-show="currentUser.firstname">Add Job</a></li>
 				
 				<li><a href="#/blog" ng-show="currentUser.firstname">Add Blog Post</a></li>
-				<li><a href="#/addFriend" ng-show="currentUser.firstname">Friends</a></li>
+				<li><a href="#/listFriend" ng-show="currentUser.firstname">Friends</a></li>
+				<li><a href="#/viewFriends" ng-show="currentUser.firstname">My Friends</a></li>
 				<li><a href="#/chat_forum" ng-show="currentUser.firstname">chat</a></li>
 				<li><a href="#/register" ng-hide="currentUser.firstname">Sign Up</a></li>
 				<li><a href="#/login" ng-hide="currentUser.firstname">Sign In</a></li>

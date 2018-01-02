@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Friend {
+public class Friend extends BaseDomain {
 	@Id
 	@GeneratedValue
 	private int id;

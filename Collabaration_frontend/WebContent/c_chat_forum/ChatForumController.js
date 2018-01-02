@@ -1,7 +1,7 @@
 /**
  * 
  */
-myApp.controller("ChatForumController",function($scope,ChatForumService){
+myApp.controller("ChatForumController",function($scope,ChatForumService,$rootScope,$http){
 	console.log("ChatForumController...")
 	$scope.messages=[];
 	$scope.message="";
@@ -9,7 +9,7 @@ myApp.controller("ChatForumController",function($scope,ChatForumService){
 	
 	$scope.addMessage=function(){
 		console.log("addMessage")
-		ChatForumService.send($rootScope.currentUser.username+":" +$scope.message);
+		ChatForumService.send($rootScope.currentUser.user_name+":" +$scope.message);
 		$scope.message="";
 	};
 	

@@ -20,8 +20,10 @@ myApp
 							self.friend = { // initialization
 								id : '',
 								friend_id : '',
-								user_id : '',	
-								status : '',
+								user_id : '',
+								friendname:'',
+								name:'',
+								request_status : '',
 								isOnline : '',
 								errorCode : '',
 								errorMessage : ''
@@ -29,13 +31,13 @@ myApp
 							self.friends = [];
 
 							self.user = {
-								id : '',
+								user_id : '',
 								user_name : '',
 								password : '',
 								firstname : '',
 								lastname:'',
 								contact: '',
-								status: '',
+								isOnline: '',
 								email : '',
 								role : '',
 								errorCode : '',
